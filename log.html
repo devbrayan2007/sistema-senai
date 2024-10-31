@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="images/logo-removebg-preview.png" type="image/x-icon">
     <style>
         body {
-            background-color: rgb(14, 190, 102);
+            background-color: rgb(5, 90, 47);
             font: normal 15pt Arial;
             color: black;
             background-image: url('papel-de-parede.jpg');
@@ -31,6 +31,7 @@
         p {
             font-size: 1em;
             margin-bottom: 20px;
+            color: darkkhaki;
         }
 
         form {
@@ -119,9 +120,24 @@
                 padding: 8px;
             }
         }
+
+        a {
+            color: white;
+        }
+
+        .logo {
+            width: 150px; /* Tamanho padrão */
+            max-width: 25%; /* Ajustável em telas pequenas */
+            margin-top: 30px; /* Espaçamento acima do h1 */
+            margin-bottom: 15px; /* Espaçamento abaixo */
+            animation: fadeIn 1.2s ease-in-out;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3)); /* Sombra elegante */
+        }
+
     </style>
 </head>
 <body>
+    <img src="images/logo-removebg-preview.png" alt="PHAMARCY LOGO" class="logo">
     <h2>Esqueceu sua senha?</h2>
     <p>Não se preocupe! Nós te ajudamos! ;)</p>
     <form action="log.php" method="post">
@@ -132,6 +148,7 @@
     <footer>
         <p>SITE EM MANUTENÇÃO</p>
         <p>&copy; 2024 FIRJAN SENAI - DUQUE DE CAXIAS/RJ - Todos os direitos reservados.</p>
+        <p>Criador do site: <a href="https://github.com/devbrayan2007">Brayan R Campos.</a></p>
     </footer>
 </body>
 </html>

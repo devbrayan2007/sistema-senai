@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHAMARCY</title>
+    <title>PHARMACY</title>
     <link rel="shortcut icon" href="images/logo-removebg-preview.png" type="image/x-icon">
     <style>
         body {
-            background-color: rgb(14, 190, 102);
-            font: normal 15pt Arial;
+            background-color: rgb(5, 90, 47);
+            font: normal 15pt Arial, sans-serif;
             color: black;
             display: flex;
             justify-content: center;
@@ -16,6 +16,10 @@
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
+        }
+
+        h2 {
+            color: whitesmoke;
         }
 
         .form-container {
@@ -49,39 +53,44 @@
             box-sizing: border-box;
         }
 
-        /* Botões */
-        #btn-salvar, #btn-excluir {
+        /* Estilo do botão de cadastrar */
+        #btn-cadastrar {
             display: inline-block;
-            width: 48%;
+            width: 100%; /* Botão ocupa toda a largura disponível */
             margin-top: 20px;
             padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            background-color: #4CAF50;
-            transition: background-color 0.3s;
+            background-color: #4CAF50; /* Cor do botão */
+            color: white; /* Texto do botão */
+            font-size: 16px; /* Tamanho da fonte */
+            font-weight: bold; /* Peso da fonte */
+            transition: background-color 0.3s, transform 0.3s; /* Transição suave */
+            position: relative; /* Para posicionar o ícone */
+            overflow: hidden; /* Para evitar que o ícone transborde */
         }
 
-        #btn-excluir {
-            background-color: #f44336;
+        /* Estilo do ícone no botão */
+        #btn-cadastrar img {
+            width: 20px; /* Tamanho do ícone */
+            vertical-align: middle; /* Alinha verticalmente */
+            margin-right: 8px; /* Espaçamento entre o ícone e o texto */
         }
 
-        #btn-salvar:hover {
-            background-color: #45a049;
+        #btn-cadastrar:hover {
+            background-color: #45a049; /* Cor ao passar o mouse */
+            transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
         }
 
-        #btn-excluir:hover {
-            background-color: #d32f2f;
-        }
-
-        #btn-salvar img, #btn-excluir img {
-            width: 20px;
-            vertical-align: middle;
+        #btn-cadastrar:active {
+            background-color: #388E3C; /* Cor ao clicar */
+            transform: scale(1); /* Remove o efeito de zoom */
         }
 
         footer {
             text-align: center;
-            color: #333;
+            color: white;
             font-size: 0.9em;
             padding: 10px 0;
         }
@@ -98,49 +107,18 @@
                 padding: 8px;
             }
 
-            #btn-salvar, #btn-excluir {
-                width: 100%;
-                margin-top: 10px;
+            #btn-cadastrar {
+                width: 100%; /* Garante que o botão ainda ocupe toda a largura */
             }
         }
-
-        .back-button {
-            display: inline-block;
-            width: 150px;
-            padding: 8px 16px; /* Reduz o espaço interno */
-            margin-top: 20px;
-            color: #ffffff;
-            background-color: #4CAF50;
-            border-radius: 5px;
-            font-size: 12pt; /* Diminui o tamanho da fonte */
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.3s;
-}
-
-        .back-button:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
-
-        .back-button:active {
-            background-color: #3e8e41;
-            transform: scale(1);
-        }
-
-
-       
     </style>
 </head>
 <body>
-    <h2>Consulta de Medicamentos</h2>
+    <h2>Cadastro de Medicamentos</h2>
     <div class="form-container">
-        <form action="cadastro-produtos.php" method="post">
+        <form action="php/cadastro.php" method="post">
             <label for="medicamento">Medicamento:</label>
-            <input type="text" name="medicamento" placeholder="Digite qual produto deseja cadastrar" required>
-
-            <label for="cod-produto">Código Produto:</label>
-            <input type="text" name="cod-produto" placeholder="Digite qual o código do produto" required>
+            <input type="text" name="medicamento" placeholder="Nome do medicamento" required>
 
             <label for="tipo-produto">Tipo:</label>
             <select name="tipo-produto" id="produto" required>
@@ -151,36 +129,38 @@
             </select>
 
             <label for="preco-produto">Preço: R$</label>
-            <input type="text" name="preco-produto" placeholder="Digite o preço do produto" required>
+            <input type="text" name="preco" placeholder="Ex: R$2.50" required>
 
-            <label for="marca-produto">Marca:</label>
-            <select name="marca-produto" id="marca" required>
-                <option value="">Selecione a marca</option>
-                <option value="marca1">Marca 1</option>
-                <option value="marca2">Marca 2</option>
-                <option value="marca3">Marca 3</option>
+            <label for="fabricante">Fabricante:</label>
+            <input type="text" name="fabricante" placeholder="Nome do fabricante" required>
+
+            <label for="data-chegada">Data de chegada:</label>
+            <input type="date" name="data-chegada" placeholder="Data de Chegada do medicamento" required>
+
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="categoria" required>
+                <option value="">Selecione a categoria</option>
+                <option value="cat1">Categoria 1</option>
+                <option value="cat2">Categoria 2</option>
+                <option value="cat3">Categoria 3</option>
             </select>
 
-            <label for="descricao-produto">Descrição:</label>
-            <input type="text" name="descricao-produto" placeholder="Digite a descrição do produto" required>
+            <label for="descricao">Descrição:</label>
+            <input type="text" name="descricao" required>
 
-            <label for="data-validade">Data Validade:</label>
+            <label for="data-validade">Data de Validade:</label>
             <input type="date" name="data-validade" required>
 
             <label for="unidades">Unidades:</label>
-            <input type="text" name="unidades" placeholder="Digite quantas unidades" required>
+            <input type="text" name="unidades" required>
 
-            <button type="submit" id="btn-salvar">
-                <img src="images/usuario-confirmado-removebg-preview.png" alt="Salvar produto"> Salvar
+            <button type="submit" id="btn-cadastrar">
+                <img src="images/registro-removebg-preview.png" alt="Cadastrar produto"> Cadastrar
             </button>
-            <button type="submit" id="btn-excluir">
-                <img src="images/excluir-removebg-preview.png" alt="Excluir produto"> Excluir
-            </button>
-            <a href="dashboard.html" class="back-button">Voltar ao painel</a>
-
         </form>
     </div>
-
-    <footer><p>SITE EM MANUTENÇÃO</p></footer>
+    <footer>
+        <p>SITE EM MANUTENÇÃO</p>
+    </footer>
 </body>
 </html>

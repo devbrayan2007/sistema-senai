@@ -7,10 +7,9 @@
     <link rel="shortcut icon" href="images/logo-removebg-preview.png" type="image/x-icon">
     <style>
         body {
-            background-color: rgb(14, 190, 102);
+            background-color: rgb(5, 90, 47);
             font: normal 15pt Arial, sans-serif;
             color: white;
-            background-image: url('imagens/papel-de-parede.jpg');
             background-size: cover;
             background-position: center 0.5px;
             background-attachment: fixed;
@@ -23,9 +22,18 @@
             min-height: 100vh;
         }
 
+        .logo {
+            width: 150px; /* Tamanho padrão */
+            max-width: 25%; /* Ajustável em telas pequenas */
+            margin-top: 30px; /* Espaçamento acima do h1 */
+            margin-bottom: 15px; /* Espaçamento abaixo */
+            animation: fadeIn 1.2s ease-in-out;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3)); /* Sombra elegante */
+        }
+
         h1 {
             text-align: center;
-            margin-top: 80px;
+            margin-top: 20px;
             font-size: 2.5em;
             color: #ffffff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -58,7 +66,7 @@
             font: bold 18pt Arial, sans-serif;
             color: #333;
         }
-
+        input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
@@ -71,6 +79,7 @@
             transition: border-color 0.3s, box-shadow 0.3s;
         }
 
+        input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
             border-color: rgb(14, 190, 102);
@@ -147,6 +156,7 @@
                 margin-top: 80px;
             }
 
+            input[type="text"],
             input[type="email"],
             input[type="password"] {
                 padding: 10px;
@@ -161,9 +171,12 @@
     </style>
 </head>
 <body>
+    <img src="images/logo-removebg-preview.png" alt="PHAMARCY INC" class="logo">
     <h1>PHAMARCY</h1>
     <div class="form-container">
-        <form action="login.php">
+        <form action="php/login.php" method="post">
+            <label for="nome">Nome de usuário:</label>
+            <input type="text" name="nome" id="nome" placeholder="Nome de usuário" required>
             <label for="email">Login:</label>
             <input type="email" name="email" id="email" placeholder="exemplo@gmail.com" required>
 
