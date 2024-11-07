@@ -1,12 +1,29 @@
 <?php
-
 class Conexao {
-    private static $instancia;
+    private static $conn;
 
     public static function getConn() {
-        if (!isset(self::$instancia)) {
-            self::$instancia = new PDO('mysql:host=localhost; dbname=sistema_farmacia', 'root', '23012007');
+        if (self::$conn === null) {
+            try {
+                $host = 'localhost';
+                $db = 'sistema_farmacia';
+                $user = 'root';
+                $pass = '23012007';
+                $charset = 'utf8mb4';
+
+                $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+                $options = [
+                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES   => false,
+                ];
+                self::$conn = new PDO($dsn, $user, $pass, $options);
+            } catch (PDOException $e) {
+                echo 'Conexão falhou: ' . $e->getMessage();
+                exit;
+            }
         }
-        return self::$instancia;
+        return self::$conn;
     }
 }
+?>

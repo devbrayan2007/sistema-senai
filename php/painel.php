@@ -179,12 +179,12 @@ $nome_usuario = $usuario['nome'] ?? 'Usuário';
 
         function logout() {
             alert("Você saiu da conta!");
-            window.location.href = "logout.php";
+            window.location.href = "/sistema-senai/index.html";
         }
 
         function switchAccount() {
             alert("Entrando com outra conta...");
-            window.location.href = "index.html";
+            window.location.href = "/sistema-senai/index.html";
         }
     </script>
 </head>
