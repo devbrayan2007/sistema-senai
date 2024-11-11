@@ -96,6 +96,25 @@
             padding: 10px 0;
         }
 
+        .back-button:hover {
+            background-color: #e53935;
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            margin-top: 15px;
+            display: inline-block;
+            text-align: center;
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
             .form-container {
@@ -112,9 +131,12 @@
                 width: 100%; /* Garante que o botão ainda ocupe toda a largura */
             }
         }
+
+        .logo { width: 150px; max-width: 25%; margin-top: 30px; margin-bottom: 15px; animation: fadeIn 1.2s ease-in-out; filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3)); }
     </style>
 </head>
 <body>
+    <img src="images/logo-removebg-preview.png" alt="PHAMARCY LOGO" class="logo">
     <h2>Cadastro de Medicamentos</h2>
     <div class="form-container">
         <form action="cadastro.php" method="post">
@@ -124,9 +146,22 @@
             <label for="tipo-produto">Tipo:</label>
             <select name="tipo-produto" id="produto" required>
                 <option value="">Selecione o tipo</option>
-                <option value="tipo1">Tipo 1</option>
-                <option value="tipo2">Tipo 2</option>
-                <option value="tipo3">Tipo 3</option>
+                <option value="analgesico">Analgésico</option>
+                <option value="antibiotico">Antibiótico</option>
+                <option value="antiviral">Antiviral</option>
+                <option value="antifugicos">Antifúgico</option>
+                <option value="anti-inflamatorio">Anti-inflamatório</option>
+                <option value="antialergico">Antialérgico</option>
+                <option value="antidepressivo">Antidepressivo</option>
+                <option value="anticoagulantes">Antiacoagulante</option>
+                <option value="antihipertensivos">Antihipertensivo</option>
+                <option value="diureticos">Diúretico</option>
+                <option value="hipoglicemiante">Hipoglicemiante</option>
+                <option value="anticonvulsivante"> Anticonvulsivante</option>
+                <option value="vitaminicos">Vitaminico</option>
+                <option value="imunossupressor"> Imunossupressor</option>
+                <option value="hormonios">Hormônio</option>
+                <option value="antineoplásico">Antineoplásico</option>
             </select>
 
             <label for="preco-produto">Preço: R$</label>
@@ -141,9 +176,23 @@
             <label for="categoria">Categoria:</label>
             <select name="categoria" id="categoria" required>
                 <option value="">Selecione a categoria</option>
-                <option value="cat1">Categoria 1</option>
-                <option value="cat2">Categoria 2</option>
-                <option value="cat3">Categoria 3</option>
+                <option value="analgesicos-antipireticos">Analgésicos e Antipiréticos</option>
+                <option value="antibioticos">Antibióticos</option>
+                <option value="antivirais">Antivirais</option>
+                <option value="antifungicos">Antifúngicos</option>
+                <option value="anti-inflamatorios">Anti-inflamatórios</option>
+                <option value="antialergicos-antihistaminicos">Antialérgicos (Antihistamínicos)</option>
+                <option value="ansioliticos-antidepressivos">Ansiolíticos e Antidepressivos</option>
+                <option value="anticoagulantes-antiagregantes">Anticoagulantes e Antiagregantes</option>
+                <option value="antihipertensivos">Antihipertensivos</option>
+                <option value="diureticos">Diuréticos</option>
+                <option value="hipoglicemiantes">Hipoglicemiantes</option>
+                <option value="anticonvulsivantes">Anticonvulsivantes</option>
+                <option value="vitaminicos-suplementos">Vitamínicos e Suplementos</option>
+                <option value="imunossupressores">Imunossupressores</option>
+                <option value="hormonios-terapia-reposicao-hormonal">Hormônios e Terapias de Reposição Hormonal</option>
+                <option value="antineoplasicos">Antineoplásicos</option>
+                
             </select>
 
             <label for="descricao">Descrição:</label>
@@ -158,10 +207,12 @@
             <button type="submit" name="btn-cadastrar" id="btn-cadastrar">
                 <img src="images/registro-removebg-preview.png" alt="Cadastrar produto"> Cadastrar
             </button>
+
+            <a href="php/painel.php" class="back-button">Voltar ao painel</a>
         </form>
     </div>
     <footer>
-        <p>SITE EM MANUTENÇÃO</p>
+       <p>&copy; GRUPO DE DESENVOLVEDORES DE SISTEMA DO FIRJAN SENAI - DUQUE DE CAXIAS/RJ - 2024</p>
     </footer>
 </body>
 </html>

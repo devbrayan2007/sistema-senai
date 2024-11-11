@@ -6,6 +6,7 @@
     <title>PHAMARCY</title>
     <link rel="shortcut icon" href="images/logo-removebg-preview.png" type="image/x-icon">
     <style>
+        /* Estilos CSS do arquivo HTML original */
         body {
             background-color: rgb(5, 90, 47);
             font: normal 15pt Arial;
@@ -74,7 +75,6 @@
         button:hover {
             background-color: rgb(30, 30, 150);
         }
-
         footer {
             margin-top: 20px;
             padding: 20px;
@@ -140,11 +140,19 @@
     <img src="images/logo-removebg-preview.png" alt="PHAMARCY LOGO" class="logo">
     <h2>Esqueceu sua senha?</h2>
     <p>Não se preocupe! Nós te ajudamos! ;)</p>
-    <form action="log.php" method="post">
+
+    <!-- Exibe a mensagem de erro ou sucesso -->
+    <?php if (isset($mensagem)) : ?>
+        <p style="color: <?php echo ($mensagem == 'E-mail enviado com sucesso!' ? 'green' : 'red'); ?>;"><?php echo $mensagem; ?></p>
+    <?php endif; ?>
+
+    <!-- Formulário de recuperação de senha -->
+    <form action="" method="post">
         <label for="email">Informe seu email para redefinir sua senha:</label>
         <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
         <button type="submit">Enviar código</button>
     </form>
+
     <footer>
         <p>SITE EM MANUTENÇÃO</p>
         <p>&copy; 2024 FIRJAN SENAI - DUQUE DE CAXIAS/RJ - Todos os direitos reservados.</p>

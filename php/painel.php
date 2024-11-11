@@ -190,7 +190,6 @@ $nome_usuario = $usuario['nome'] ?? 'Usuário';
 </head>
 <body>
     <div class="sidebar">
-        <a href="/sistema-senai/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         <div>
             <a href="javascript:void(0);" onclick="toggleSubmenu()"><i class="fas fa-pills"></i> Medicamentos</a>
             <div id="medicamentos-submenu" class="submenu">
@@ -208,8 +207,10 @@ $nome_usuario = $usuario['nome'] ?? 'Usuário';
             </div>
         </div>
         <img src="/sistema-senai/images/logo-removebg-preview.png" alt="PHAMARCY LOGO" class="logo">
-        <h1>PHAMARCY</h1>
-        <footer><p>SITE EM MANUTENÇÃO</p></footer>
+        <h1>BRASIL PHAMARCY</h1>
+        <footer>
+        <p>&copy; GRUPO DE DESENVOLVEDORES DE SISTEMA DO FIRJAN SENAI - DUQUE DE CAXIAS/RJ - 2024</p>
+        </footer>
     </div>
 </body>
 </html>

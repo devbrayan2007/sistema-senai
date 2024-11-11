@@ -26,8 +26,8 @@ require_once 'php/connection.php';
             color: whitesmoke;
         }
         .form-container {
-            width: 80%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 1050px;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
@@ -50,7 +50,7 @@ require_once 'php/connection.php';
             border-radius: 5px;
             box-sizing: border-box;
         }
-        button, .back-button {
+        button, .back-button, .edit-link {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -64,18 +64,19 @@ require_once 'php/connection.php';
             cursor: pointer;
             transition: background-color 0.3s, box-shadow 0.3s;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
         }
         #btn-editar { background-color: #FFA500; color: white; }
         #btn-excluir { background-color: #f44336; color: white; }
-        #btn-relatorio { background-color: #2196F3; color: white; }
+        #btn-consultar { background-color: #2196F3; color: white; }
         .back-button { background-color: #4CAF50; color: white; text-decoration: none; }
-        button img { height: 18px; margin-right: 8px; }
-        button:hover { box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3); }
-        #btn-salvar:hover { background-color: #45a049; }
+        button img, .edit-link img { height: 18px; margin-right: 8px; }
+        button:hover, .edit-link:hover { box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3); }
+        #btn-editar:hover { background-color: #FF8C00; }
         #btn-excluir:hover { background-color: #d32f2f; }
-        #btn-relatorio:hover { background-color: #1E88E5; }
+        #btn-consultar:hover { background-color: #1E88E5; }
         .back-button:hover { background-color: #45a049; }
-        button:active { transform: scale(0.97); }
+        button:active, .edit-link:active { transform: scale(0.97); }
         .table-container {
             width: 100%;
             max-height: 400px;
@@ -96,89 +97,50 @@ require_once 'php/connection.php';
     <div class="form-container">
         <form action="" method="post">
             <label for="medicamento">Medicamento:</label>
-            <input type="text" name="medicamento" placeholder="Digite qual produto deseja cadastrar" required>
+            <input type="text" name="medicamento" placeholder="Digite qual produto deseja consultar" required>
 
-            <label for="cod-produto">Código Produto:</label>
-            <input type="text" name="cod-produto" placeholder="Digite qual o código do produto" required>
-
-            <label for="tipo-produto">Tipo:</label>
-            <select name="tipo-produto" id="produto" required>
-                <option value="">Selecione o tipo</option>
-                <option value="tipo1">Tipo 1</option>
-                <option value="tipo2">Tipo 2</option>
-                <option value="tipo3">Tipo 3</option>
-            </select>
-
-            <label for="preco-produto">Preço: R$</label>
-            <input type="text" name="preco-produto" placeholder="Digite o preço do produto" required>
-
-            <label for="descricao-produto">Descrição:</label>
-            <input type="text" name="descricao-produto" placeholder="Digite a descrição do produto" required>
-
-            <label for="data-validade">Data Validade:</label>
-            <input type="date" name="data-validade" required>
-
-            <label for="unidades">Unidades:</label>
-            <input type="text" name="unidades" placeholder="Digite quantas unidades" required>
-
-            <button type="submit" name="gerar_relatorio" id="btn-relatorio">
-                <img src="images/relatorio-de-negocios-removebg-preview.png" alt="Visualizar relatório"> Gerar Relatório
+            <button type="submit" name="consultar" id="btn-consultar">
+                <img src="images/relatorio-de-negocios-removebg-preview.png" alt="Consultar produto"> Consultar
             </button>
-            <button type="submit" id="btn-editar">
-                <img src="images/usuario-confirmado-removebg-preview.png" alt="Salvar produto"> Editar
-            </button>
-            <button type="submit" id="btn-excluir">
-                <img src="images/excluir-removebg-preview.png" alt="Excluir produto"> Excluir
-            </button>
-            <a href="painel.html" class="back-button">Voltar ao painel</a>
+
+            <a href="listar_medicamentos.php" class="edit-link" id="btn-editar">
+                <img src="images/usuario-confirmado-removebg-preview.png" alt="Editar produto"> Editar Medicamento
+            </a>
+            <a href="php/painel.php" class="back-button">Voltar ao painel</a>
         </form>
 
         <?php
-        // Verifica se o botão "Gerar Relatório" foi clicado
-        if (isset($_POST['gerar_relatorio'])) {
+        if (isset($_POST['consultar'])) {
             try {
-                // Conecta ao banco de dados usando o método getConn() da classe Conexao
                 $conn = Conexao::getConn();
-
-                // Obtém o valor do medicamento a ser consultado
                 $nome_medicamento = $_POST['medicamento'];
 
-                // Prepara a consulta SQL para selecionar o medicamento específico
                 $sql = "SELECT * FROM medicamentos WHERE nome_medicamento = :nome_medicamento";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':nome_medicamento', $nome_medicamento, PDO::PARAM_STR);
                 $stmt->execute();
 
-                // Verifica se há registros retornados
                 if ($stmt->rowCount() > 0) {
-                    // Exibe o medicamento em uma tabela
                     echo "<div class='table-container'>";
                     echo "<table>";
                     echo "<tr>
                             <th>Nome do Medicamento</th>
-                            <th>Tipo do Medicamento</th>
+                            <th>Tipo</th>
                             <th>Preço</th>
                             <th>Fabricante</th>
-                            <th>Data de Chegada</th>
-                            <th>Categoria</th>
-                            <th>Descrição</th>
                             <th>Data de Validade</th>
                             <th>Unidades</th>
                           </tr>";
 
-                    // Itera sobre os resultados e exibe o medicamento
                     while ($medicamento = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>
-                                <td>{$medicamento['nome_medicamento']}</td>
-                                <td>{$medicamento['tipo']}</td>
-                                <td>R$ " . number_format($medicamento['preco'], 2, ',', '.') . "</td>
-                                <td>{$medicamento['fabricante']}</td>
-                                <td>{$medicamento['data_chegada']}</td>
-                                <td>{$medicamento['categoria']}</td>
-                                <td>{$medicamento['descricao']}</td>
-                                <td>{$medicamento['data_validade']}</td>
-                                <td>{$medicamento['unidade']}</td>
-                              </tr>";
+                        <td>{$medicamento['nome_medicamento']}</td>
+                        <td>{$medicamento['tipo']}</td>
+                        <td>R$ " . number_format($medicamento['preco'], 2, ',', '.') . "</td>
+                        <td>{$medicamento['fabricante']}</td>
+                        <td>{$medicamento['data_validade']}</td>
+                        <td>{$medicamento['unidade']}</td>
+                      </tr>";
                     }
                     echo "</table>";
                     echo "</div>";
@@ -190,4 +152,9 @@ require_once 'php/connection.php';
             }
         }
         ?>
-    </div[_{{{CITATION{{{_1{](https://github.com/pedroinbezerra/serapys/tree/c5cd76785f56f345b8d9d8e5835af4acb2ce0097/index.php)
+    </div>
+    <footer>
+    <p>&copy; GRUPO DE DESENVOLVEDORES DE SISTEMA DO FIRJAN SENAI - DUQUE DE CAXIAS/RJ - 2024</p>
+    </footer>
+</body>
+</html>
