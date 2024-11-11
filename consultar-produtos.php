@@ -65,7 +65,7 @@ require_once 'php/connection.php';
             transition: background-color 0.3s, box-shadow 0.3s;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
         }
-        #btn-salvar { background-color: #4CAF50; color: white; }
+        #btn-editar { background-color: #FFA500; color: white; }
         #btn-excluir { background-color: #f44336; color: white; }
         #btn-relatorio { background-color: #2196F3; color: white; }
         .back-button { background-color: #4CAF50; color: white; text-decoration: none; }
@@ -76,7 +76,13 @@ require_once 'php/connection.php';
         #btn-relatorio:hover { background-color: #1E88E5; }
         .back-button:hover { background-color: #45a049; }
         button:active { transform: scale(0.97); }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .table-container {
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        table { width: 100%; border-collapse: collapse; }
         table, th, td { border: 1px solid #ddd; padding: 8px; }
         th { background-color: #f2f2f2; font-weight: bold; }
         tr:nth-child(even) { background-color: #f9f9f9; }
@@ -115,13 +121,11 @@ require_once 'php/connection.php';
             <label for="unidades">Unidades:</label>
             <input type="text" name="unidades" placeholder="Digite quantas unidades" required>
 
-            <!-- Botão Gerar Relatório -->
             <button type="submit" name="gerar_relatorio" id="btn-relatorio">
                 <img src="images/relatorio-de-negocios-removebg-preview.png" alt="Visualizar relatório"> Gerar Relatório
             </button>
-
-            <button type="submit" id="btn-salvar">
-                <img src="images/usuario-confirmado-removebg-preview.png" alt="Salvar produto"> Salvar
+            <button type="submit" id="btn-editar">
+                <img src="images/usuario-confirmado-removebg-preview.png" alt="Salvar produto"> Editar
             </button>
             <button type="submit" id="btn-excluir">
                 <img src="images/excluir-removebg-preview.png" alt="Excluir produto"> Excluir
@@ -136,18 +140,22 @@ require_once 'php/connection.php';
                 // Conecta ao banco de dados usando o método getConn() da classe Conexao
                 $conn = Conexao::getConn();
 
-                // Prepara a consulta SQL para selecionar todos os medicamentos
-                $sql = "SELECT * FROM medicamentos";
+                // Obtém o valor do medicamento a ser consultado
+                $nome_medicamento = $_POST['medicamento'];
+
+                // Prepara a consulta SQL para selecionar o medicamento específico
+                $sql = "SELECT * FROM medicamentos WHERE nome_medicamento = :nome_medicamento";
                 $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':nome_medicamento', $nome_medicamento, PDO::PARAM_STR);
                 $stmt->execute();
 
                 // Verifica se há registros retornados
                 if ($stmt->rowCount() > 0) {
-                    // Exibe cada medicamento em uma tabela
+                    // Exibe o medicamento em uma tabela
+                    echo "<div class='table-container'>";
                     echo "<table>";
                     echo "<tr>
-                            <th>Código</th>
-                            <th>Medicamento</th>
+                            <th>Nome do Medicamento</th>
                             <th>Tipo do Medicamento</th>
                             <th>Preço</th>
                             <th>Fabricante</th>
@@ -157,8 +165,8 @@ require_once 'php/connection.php';
                             <th>Data de Validade</th>
                             <th>Unidades</th>
                           </tr>";
-                          
-                    // Itera sobre os resultados e exibe cada medicamento
+
+                    // Itera sobre os resultados e exibe o medicamento
                     while ($medicamento = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>
                                 <td>{$medicamento['nome_medicamento']}</td>
@@ -173,16 +181,13 @@ require_once 'php/connection.php';
                               </tr>";
                     }
                     echo "</table>";
+                    echo "</div>";
                 } else {
-                    echo "<p>Nenhum medicamento cadastrado.</p>";
+                    echo "<p>Nenhum medicamento encontrado.</p>";
                 }
             } catch (PDOException $e) {
                 echo "<p>Erro ao consultar medicamentos: " . $e->getMessage() . "</p>";
             }
         }
         ?>
-    </div>
-
-    <footer><p>SITE EM MANUTENÇÃO</p></footer>
-</body>
-</html>
+    </div[_{{{CITATION{{{_1{](https://github.com/pedroinbezerra/serapys/tree/c5cd76785f56f345b8d9d8e5835af4acb2ce0097/index.php)

@@ -8,7 +8,7 @@ class Conexao {
                 $host = 'localhost';
                 $db = 'sistema_farmacia';
                 $user = 'root';
-                $pass = '23012007';
+                $pass = 'alunolab';
                 $charset = 'utf8mb4';
 
                 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

@@ -194,7 +194,7 @@ $nome_usuario = $usuario['nome'] ?? 'Usuário';
         <div>
             <a href="javascript:void(0);" onclick="toggleSubmenu()"><i class="fas fa-pills"></i> Medicamentos</a>
             <div id="medicamentos-submenu" class="submenu">
-                <a href="/sistema-senai/consultar-produtos.html" onclick="showAlert('Consultando medicamentos!')"><i class="fas fa-search"></i> Consultar Medicamentos</a>
+                <a href="/sistema-senai/consultar-produtos.php" onclick="showAlert('Consultando medicamentos!')"><i class="fas fa-search"></i> Consultar Medicamentos</a>
                 <a href="/sistema-senai/cadastro-produtos.html" onclick="showAlert('Cadastrando medicamentos!')"><i class="fas fa-plus"></i> Cadastrar Medicamentos</a>
             </div>
         </div>
